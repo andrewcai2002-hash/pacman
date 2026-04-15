@@ -1,6 +1,6 @@
 /*
  * include/player.h
- * Interface du module joueur : structure, déplacements, collecte, score.
+ * Le joueur (Pacman) : sa position, ses déplacements, son score.
  */
 
 #ifndef PLAYER_H
@@ -9,7 +9,7 @@
 #include "types.h"
 #include "map.h"
 
-/* ─── Structure du joueur ────────────────────────────────────────────────── */
+/* Le joueur */
 typedef struct {
     Vector2   pos;          /* Position actuelle sur la grille              */
     Vector2   spawn;        /* Position de réapparition                     */
@@ -22,7 +22,7 @@ typedef struct {
     int       anim_timer;   /* Compteur pour alterner les frames            */
 } Player;
 
-/* ─── Fonctions publiques ────────────────────────────────────────────────── */
+/* Fonctions */
 
 /**
  * player_init  –  Initialise le joueur à sa position de départ.

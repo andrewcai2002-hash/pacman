@@ -1,6 +1,6 @@
 /*
  * include/render.h
- * Interface du module rendu : affichage carte, joueur, fantômes, HUD.
+ * Affichage du jeu : la carte, les personnages, l'interface.
  */
 
 #ifndef RENDER_H
@@ -20,52 +20,34 @@
 #define COLOR_PLAYER_R 255, 255,   0, 255  /* Joueur jaune                 */
 #define COLOR_HUD_R    50,  50,  50, 255   /* Fond HUD                     */
 
-/* Couleurs des 4 fantômes */
-#define COLOR_GHOST_0  255,   0,   0, 255  /* Rouge  – Blinky              */
-#define COLOR_GHOST_1  255, 184, 255, 255  /* Rose   – Pinky               */
-#define COLOR_GHOST_2    0, 255, 255, 255  /* Cyan   – Inky                */
-#define COLOR_GHOST_3  255, 184,  82, 255  /* Orange – Clyde               */
-#define COLOR_SCARED_R   0,   0, 255, 255  /* Fantôme effrayé bleu         */
+/* Couleurs des fantômes */
+#define COLOR_GHOST_0  255,   0,   0, 255  /* Blinky, le rouge */
+#define COLOR_GHOST_1  255, 184, 255, 255  /* Pinky, le rose */
+#define COLOR_GHOST_2    0, 255, 255, 255  /* Inky, le cyan */
+#define COLOR_GHOST_3  255, 184,  82, 255  /* Clyde, l'orange */
+#define COLOR_SCARED_R   0,   0, 255, 255  /* Bleu quand ils ont peur */
 
-/* ─── Fonctions publiques ────────────────────────────────────────────────── */
+/* Fonctions */
 
-/**
- * render_clear  –  Efface l'écran avec la couleur de fond.
- */
+/* Efface l'ecran */
 void render_clear(SDL_Renderer *renderer);
 
-/**
- * render_map  –  Dessine la carte (murs, pastilles, cases vides).
- * @param tick  Tick courant du jeu, utilisé pour le clignotement des super pastilles.
- */
+/* Dessine la carte */
 void render_map(SDL_Renderer *renderer, const Map *map, int tick);
 
-/**
- * render_player  –  Dessine le joueur (cercle jaune rempli).
- */
+/* Dessine Pacman */
 void render_player(SDL_Renderer *renderer, const Player *player);
 
-/**
- * render_ghosts  –  Dessine tous les fantômes.
- */
+/* Dessine les fantômes */
 void render_ghosts(SDL_Renderer *renderer, const Ghost ghosts[GHOST_COUNT]);
 
-/**
- * render_hud  –  Affiche le score, le high score, le niveau et les vies.
- * @param level       Numéro de niveau courant.
- * @param high_score  Meilleur score global.
- */
+/* Affiche le HUD (score, high score, niveau, vies) */
 void render_hud(SDL_Renderer *renderer, const Player *player, int level, int high_score);
 
-/**
- * render_overlay_text  –  Affiche un message centré (menu, game over, win).
- *                          Implémentation minimaliste avec des rectangles.
- */
+/* Affiche du texte au milieu (menu, game over, etc) */
 void render_overlay_text(SDL_Renderer *renderer, const char *label);
 
-/**
- * render_present  –  Présente le rendu à l'écran (swap buffer).
- */
+/* Affiche tout à l'écran */
 void render_present(SDL_Renderer *renderer);
 
 #endif /* RENDER_H */

@@ -1,6 +1,6 @@
 /*
  * include/game.h
- * Interface du module principal du jeu : structure Game, boucle, états.
+ * La structure du jeu et les fonctions principales.
  */
 
 #ifndef GAME_H
@@ -12,7 +12,7 @@
 #include "player.h"
 #include "ghost.h"
 
-/* ─── Structure principale du jeu ───────────────────────────────────────── */
+/* La structure du jeu */
 typedef struct {
     GameState  state;               /* État courant (menu, playing, …)      */
     Map        map;                 /* Carte de jeu                         */
@@ -24,35 +24,35 @@ typedef struct {
     int        ghosts_eaten_count;  /* Nombre de fantômes mangés en mode bleu */
 } Game;
 
-/* ─── Fichier de sauvegarde du high score ────────────────────────────────── */
+/* Définitions du high score */
 #define HIGHSCORE_FILE "highscore.txt"
 
-/* ─── Fonctions publiques ────────────────────────────────────────────────── */
+/* Fonctions */
 
-/**
- * game_init  –  Initialise la structure Game et charge les données.
- * @param game      Pointeur vers la structure Game.
- * @param renderer  Renderer SDL2 (conservé pour les transitions futures).
+/* Initialise le jeu avec la map, le joueur et les fantômes */
+ /*
+ * @param game      Pointeur vers la structure Game
+ * @param renderer  Renderer SDL2
  */
 void game_init(Game *game, SDL_Renderer *renderer);
 
-/**
- * game_run  –  Lance et maintient la boucle principale du jeu.
- * @param game      Pointeur vers la structure Game.
- * @param window    Fenêtre SDL2.
- * @param renderer  Renderer SDL2.
+/* Lance la boucle du jeu */
+ /*
+ * @param game      Structure du jeu
+ * @param window    Fenêtre SDL2
+ * @param renderer  Renderer SDL2
  */
 void game_run(Game *game, SDL_Window *window, SDL_Renderer *renderer);
 
-/**
- * game_reset  –  Remet le jeu à zéro (nouveau niveau ou après game over).
- * @param game  Pointeur vers la structure Game.
+/* Réinitialise la carte, le joueur et les fantômes */
+ /*
+ * @param game  Structure du jeu
  */
 void game_reset(Game *game);
 
-/**
- * game_quit  –  Libère les ressources internes (sauvegarde high score).
- * @param game  Pointeur vers la structure Game.
+/* Sauvegarde le high score et libère les ressources */
+ /*
+ * @param game  Structure du jeu
  */
 void game_quit(Game *game);
 

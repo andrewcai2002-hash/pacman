@@ -1,6 +1,6 @@
 /*
  * include/map.h
- * Interface du module carte : chargement, accès aux cases, gestion des pastilles.
+ * La carte du jeu et les pastilles.
  */
 
 #ifndef MAP_H
@@ -8,14 +8,14 @@
 
 #include "types.h"
 
-/* ─── Structure principale de la carte ──────────────────────────────────── */
+/* La carte */
 typedef struct {
-    int  tiles[MAP_ROWS][MAP_COLS]; /* Grille de cases                      */
-    int  dot_count;                 /* Pastilles restantes (dot + super)     */
-    int  total_dots;                /* Total au début du niveau              */
+    int  tiles[MAP_ROWS][MAP_COLS]; /* Grille de case*/
+    int  dot_count;       /* Combien de pastilles reste */
+    int  total_dots;      /* Total au début */
 } Map;
 
-/* ─── Fonctions publiques ────────────────────────────────────────────────── */
+/* Fonctions */
 
 /**
  * map_load  –  Initialise la carte avec la grille codée en dur (niveau 1).

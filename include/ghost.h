@@ -1,6 +1,6 @@
 /*
  * include/ghost.h
- * Interface du module fantôme : structure, IA de déplacement, états.
+ * Les fantômes : leur comportement et leur IA.
  */
 
 #ifndef GHOST_H
@@ -9,21 +9,20 @@
 #include "types.h"
 #include "map.h"
 
-/* ─── États d'un fantôme ─────────────────────────────────────────────────── */
+/* États d'un fantôme */
 typedef enum {
-    GHOST_NORMAL = 0,   /* Chasse le joueur / patrouille                   */
-    GHOST_SCARED,       /* Fuit (super pastille activée)                   */
-    GHOST_DEAD          /* Retourne à la maison                            */
+    GHOST_NORMAL = 0,
+    GHOST_SCARED,       /* Le mode bleu où ils ont peur */
+    GHOST_DEAD          /* Mangés, ils retournent à la maison */
 } GhostState;
 
-/* ─── Délai de réapparition après être mangé (en frames)
- * 1er fantôme : 2s, 2ème : 4s, 3ème : 6s, 4ème : 8s */
-#define RESPAWN_DELAY_1  120   /* 2 secondes (120 frames)  */
-#define RESPAWN_DELAY_2  240   /* 4 secondes (240 frames)  */
-#define RESPAWN_DELAY_3  360   /* 6 secondes (360 frames)  */
-#define RESPAWN_DELAY_4  480   /* 8 secondes (480 frames)  */
+/* Délais de réapparition après être mangés */
+#define RESPAWN_DELAY_1  120   /* 2s */
+#define RESPAWN_DELAY_2  240   /* 4s */
+#define RESPAWN_DELAY_3  360   /* 6s */
+#define RESPAWN_DELAY_4  480   /* 8s */
 
-/* ─── Structure d'un fantôme ─────────────────────────────────────────────── */
+/* Un fantôme */
 typedef struct {
     Vector2    pos;           /* Position sur la grille                    */
     Vector2    spawn;         /* Position de réapparition dans la maison   */
@@ -38,7 +37,7 @@ typedef struct {
     int        exit_delay;    /* Délai avant qu'il puisse sortir au départ */
 } Ghost;
 
-/* ─── Fonctions publiques ────────────────────────────────────────────────── */
+/* Fonctions */
 
 /**
  * ghost_init  –  Initialise tous les fantômes à leurs positions de départ.
